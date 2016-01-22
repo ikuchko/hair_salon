@@ -1,19 +1,19 @@
-# Best Restaurants
+# HAIR SALON 
 
-##### Epicodus exercise using Java and Postgres, 01.21.2016
+##### Epicodus friday's code review project using Java and Postgres, 01.22.2016
 
-##### Author Names
+##### Illia Kuchko
 
 ## Description
-Add a description here
+Hair salon application, created to collect and manage data about stylists and their clients.
 
 ## Setup
 
 Clone this repository:
 ```
 $ cd ~/Desktop
-$ git clone https://github.com/LINK_TO_YOUR_REPO
-$ cd best-restaurants
+$ git clone https://github.com/ikuchko/hair_salon.git
+$ cd hair_salon
 ```
 
 Open terminal and run Postgres:
@@ -21,11 +21,11 @@ Open terminal and run Postgres:
 $ postgres
 ```
 
-Open a new tab in terminal and create the `best-restaurants` database:
+Open a new tab in terminal and create the `hair_salon` database:
 ```
 $ psql
-$ CREATE DATABASE best_restaurants;
-$ psql best_restaurants < best_restaurants.sql
+$ CREATE DATABASE hair_salon;
+$ psql hair_salon < hair_salon.sql
 ```
 
 Navigate back to the directory where this repository has been cloned and run gradle:
@@ -33,9 +33,17 @@ Navigate back to the directory where this repository has been cloned and run gra
 $ gradle run
 ```
 
+##Database information
+In PSQL:
+```
+CREATE DATABASE hair_salon
+CREATE TABLE stylists (id serial PRIMARY KEY, first_name varchar (20), last_name varchar (20))
+CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar (20), last_name varchar (20), phone_number varchar (12), stylist_id int REFERENCES stylists (id))
+```
+
 ## Legal
 
-Copyright (c) 2015 Author names go here
+Copyright (c) 2015 Illia Kuchko
 
 This software is licensed under the MIT license.
 
