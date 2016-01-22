@@ -1,1 +1,11 @@
-As manager, 
+As manager, I want to see welcome page that includes where I can go and what I can do.
+
+As manager, I want to see whole list of my stylists on main page.
+
+As manager, I want to add new stylist to a list, update information like first and last name, and be able to delete them.
+
+As manager, I want to see list of stylist's clients.
+
+As manager, I want to see list of all my clients.
+
+As manager, I want to add new client to a list, update information like first and last name, phone number and stylist who care by the client, and be able to delete them.
