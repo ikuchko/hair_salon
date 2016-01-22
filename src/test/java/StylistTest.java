@@ -50,6 +50,17 @@ public class StylistTest {
     assertEquals(0, Stylist.all().size());
   }
 
+  @Test
+  public void stylist_returnsListOfHisClients() {
+    Stylist stylist = new Stylist("Sergei", "Zverev");
+    stylist.save();
+    Client firstClient = new Client("Lev", "Tolsoy", "(050) 345-1232", stylist.getId());
+    firstClient.save();
+    Client secondClient = new Client("Sergei", "Esenin", "(066) 345-1232", stylist.getId());
+    secondClient.save();
+    Client [] clients = new Client [] {firstClient, secondClient};
+    assertTrue(stylist.getClientList().containsAll(Arrays.asList(clients)));
+  }
 
 
 }

@@ -85,4 +85,13 @@ public class Stylist{
     }
   }
 
+  public List<Client> getClientList() {
+    String sql = "SELECT id AS mId, first_name AS mFirstName, last_name AS mLastName, phone_number AS mPhoneNumber, stylist_id AS mStylistId FROM clients WHERE stylist_id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", mId)
+        .executeAndFetch(Client.class);
+    }
+  }
+
 }
