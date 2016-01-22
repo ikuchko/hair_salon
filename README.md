@@ -1,4 +1,4 @@
-# HAIR SALON 
+# HAIR SALON
 
 ##### Epicodus friday's code review project using Java and Postgres, 01.22.2016
 
@@ -38,7 +38,7 @@ In PSQL:
 ```
 CREATE DATABASE hair_salon
 CREATE TABLE stylists (id serial PRIMARY KEY, first_name varchar (20), last_name varchar (20))
-CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar (20), last_name varchar (20), phone_number varchar (12), stylist_id int REFERENCES stylists (id))
+CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar (20), last_name varchar (20), phone_number varchar (18), stylist_id int REFERENCES stylists (id))
 ```
 
 ## Legal
