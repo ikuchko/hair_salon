@@ -1,0 +1,22 @@
+<h3>Stylist <strong>$stylist.getName()</strong>:</h3>
+
+<ul>
+  #foreach($client in $clients)
+    <li>$client.getName()   $client.getPhoneNumber()</li>
+  #end
+</ul>
+
+<a href="/deleteStylist/$stylist.getId()">delete</a>
+
+<form class="" action="/updateStylist/$stylist.getId()" method="post">
+  <label for="newfirstname">First name</label>
+  <input type="text" name="newfirstname" id="newfirstname" value="$stylist.getFirstName()">
+
+  <label for="newlastname">Last name</label>
+  <input type="text" name="newlastname" id="newlastname" value="$stylist.getLastName()">
+
+  <button type="submit" class="btn btn-warning" name="button">Update</button>
+</form>
+
+
+<a href="/">Back</a>

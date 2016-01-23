@@ -65,11 +65,12 @@ public class Stylist{
   }
 
   public void update(String firstName, String lastName) {
-    String sql = "UPDATE stylists SET first_name = :firstName, last_name = :lastName";
+    String sql = "UPDATE stylists SET first_name = :firstName, last_name = :lastName WHERE id = :id";
     try (Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
         .addParameter("firstName", firstName)
         .addParameter("lastName", lastName)
+        .addParameter("id", mId)
         .executeUpdate();
         this.mFirstName = firstName;
         this.mLastName = lastName;

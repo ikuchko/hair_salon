@@ -1,0 +1,5 @@
+- find way to test deleted items
+- update clients
+- delete clients
+- add styling
+- add photo for stylists (dont forget to update database description in README file)

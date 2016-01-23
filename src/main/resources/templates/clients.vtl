@@ -1,0 +1,34 @@
+<h2>Clients:</h2>
+
+#if ($client)
+  <h3>$client.getName() succesfully added to stylist $stylist.getName()</h3>
+#end
+
+<form class="" action="/clients" method="post">
+  <label for="newfirstname">First name</label>
+  <input type="text" name="newfirstname" id="newfirstname" >
+
+  <label for="newlastname">Last name</label>
+  <input type="text" name="newlastname" id="newlastname">
+
+  <label for="newphone">Phone number</label>
+  <input type="text" name="newphone" id="newphone">
+
+  <label for="stylist">Stylist name</label>
+  <select id="stylist" name="stylist" type="text">
+    #foreach($stylist in $stylists)
+      <option value="$stylist.getId()">$stylist.getName()</option>
+    #end
+  </select>
+
+  <button type="submit" class="btn btn-warning" name="button">Create</button>
+</form>
+
+
+<ul>
+  #foreach($client in $clients)
+    <li>$client.getName() $client.getPhoneNumber()</li>
+  #end
+</ul>
+
+<a href="/">Back</a>

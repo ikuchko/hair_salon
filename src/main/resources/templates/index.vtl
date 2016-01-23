@@ -1,0 +1,19 @@
+<h1>Hair salon manage system</h1>
+
+<a href="/clients">Manage clients</a>
+
+<ul>
+  #foreach($stylist in $stylists)
+    <li><a href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
+  #end
+</ul>
+
+<form class="" action="/newStylist" method="post">
+  <label for="newfirstname">First name</label>
+  <input type="text" name="newfirstname" id="newfirstname">
+
+  <label for="newlastname">Last name</label>
+  <input type="text" name="newlastname" id="newlastname">
+
+  <button type="submit" class="btn btn-warning" name="button">Add</button>
+</form>
