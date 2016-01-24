@@ -1,0 +1,17 @@
+.navbar {
+  margin-top: 15px;
+}
+
+.navbar-form {
+  position: absolute;
+  right: 9px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+}
