@@ -1,29 +1,44 @@
 <div class="col-md-6">
-  <h3>Stylists:</h3>
+  #if ($stylists.size() == 0)
+    <h3 class="bg-warning">Could not find any stylist</h3>
+  #else
+    <h3>Stylists: </h3>
+  #end
   #foreach($stylist in $stylists)
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><a href="/stylist/$stylist.getId()">$stylist.getName()</a></h3>
+    <div class="panel panel-default">
+      <div class="panel-heading panel-grey">
+          <form action="/deleteStylist/$stylist.getId()" method="get">
+        <p class="panel-title"><a href="/stylist/$stylist.getId()">$stylist.getName()</a>
+            <button type="submit" class="btn btn-primary" aria-label="Left Align" id="righ-float-button">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+        </p>
+          </form>
       </div>
-      <img class="img-rounded" src="http://img.vz.ru/upimg/m76/m768791.jpg" style="width: 140px; height: 140px;">
+      <div class="panel-body">
+        <p>Clients: $stylist.getClientList().size()</p>
+      </div>
     </div>
   #end
 </div>
 
 <div class="col-md-6">
-  <form class="form add-form" action="/newStylist" method="post">
-    <div class="bs-callout bs-callout-info">
-      <div class="form-group">
-        <label for="newfirstname">First name</label>
-        <input type="text" name="newfirstname" id="newfirstname">
+  <div class="jumbotron">
+    <form class="form-horizontal" action="/newStylist" method="post">
+      <div class="bs-callout bs-callout-info">
+        <h4>Add new stylist</h4>
+        <div class="form-group">
+          <!-- <label for="newfirstname">First name</label> -->
+          <input type="text" class="form-control" name="newfirstname" id="newfirstname" placeholder="First name">
+        </div>
+        <div class="form-group">
+          <!-- <label for="newlastname">Last name</label> -->
+          <input type="text" class="form-control" name="newlastname" id="newlastname" placeholder="Last name">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block" name="button">Add</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="newlastname">Last name</label>
-        <input type="text" name="newlastname" id="newlastname">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-warning" name="button">Add</button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

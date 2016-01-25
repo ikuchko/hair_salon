@@ -51,6 +51,16 @@ public class StylistTest {
   }
 
   @Test
+  public void stylist_deletesSuccesfullyWithAttachedClients() {
+    Stylist newStylist = new Stylist("Aleksandr", "Pushkin");
+    newStylist.save();
+    Client client = new Client("Mr", "Watson", "999-99-99-999", newStylist.getId());
+    client.save();
+    newStylist.delete();
+    assertEquals(0, Stylist.all().size());
+  }
+
+  @Test
   public void stylist_returnsListOfHisClients() {
     Stylist stylist = new Stylist("Sergei", "Zverev");
     stylist.save();

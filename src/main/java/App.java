@@ -70,6 +70,8 @@ public class App {
         Stylist stylist = Stylist.find(Integer.parseInt(request.params("id")));
         stylist.update(request.queryParams("newfirstname"), request.queryParams("newlastname"));
         model.put("stylist", stylist);
+        model.put("clients", stylist.getClientList());
+
 
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());

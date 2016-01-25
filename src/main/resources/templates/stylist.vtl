@@ -1,22 +1,68 @@
-<h3>Stylist <strong>$stylist.getName()</strong>:</h3>
+<div class="col-md-6">
 
-<ul>
-  #foreach($client in $clients)
-    <li>$client.getName()   $client.getPhoneNumber()</li>
-  #end
-</ul>
+  <div class="panel panel-default">
+    <div class="panel-heading panel-grey">
+      <form action="/deleteStylist/$stylist.getId()" method="get">
+        <p>
+          stylist
+        </p>
+        <p class="title"><span class="important">$stylist.getName()</span>
+          <button type="submit" class="btn btn-primary" aria-label="Left Align" id="righ-float-button">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
+        </p>
+      </form>
+    </div>
 
-<a href="/deleteStylist/$stylist.getId()">delete</a>
+    <div class="panel-body">
+      <p>
+        #if ($clients.size() == 0)
+          No clients available
+        #else
+          Clients available: $clients.size()
+        #end
+      </p>
+    </div>
 
-<form class="" action="/updateStylist/$stylist.getId()" method="post">
-  <label for="newfirstname">First name</label>
-  <input type="text" name="newfirstname" id="newfirstname" value="$stylist.getFirstName()">
+    #if ($clients.size() > 0)
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          #foreach($client in $clients)
+            <tr>
+              <td>$client.getName()</td>
+              <td>$client.getPhoneNumber()</td>
+            </tr>
+          #end
+        </tbody>
+      </table>
+    #end
+  </div>
+</div>
 
-  <label for="newlastname">Last name</label>
-  <input type="text" name="newlastname" id="newlastname" value="$stylist.getLastName()">
+<div class="col-md-6">
+  <div class="jumbotron">
+    <form class="form-horizontal" action="/updateStylist/$stylist.getId()" method="post">
 
-  <button type="submit" class="btn btn-warning" name="button">Update</button>
-</form>
-
-
-<a href="/">Back</a>
+      <div class="bs-callout bs-callout-info">
+        <h4>Find a bug?</h4>
+        <div class="form-group">
+          <!-- <label for="newfirstname">First name</label> -->
+          <input type="text" class="form-control" name="newfirstname" id="newfirstname" value="$stylist.getFirstName()">
+        </div>
+        <div class="form-group">
+          <!-- <label for="newlastname">Last name</label> -->
+          <input type="text" class="form-control" name="newlastname" id="newlastname" value="$stylist.getLastName()">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block" name="button">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

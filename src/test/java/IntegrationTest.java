@@ -1,6 +1,7 @@
 import org.fluentlenium.adapter.FluentTest;
 import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
@@ -17,6 +18,9 @@ public class IntegrationTest extends FluentTest {
 
   @ClassRule
   public static ServerRule server = new ServerRule();
+
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
   @Test
   public void welcomePageIsCreatedTest() {
@@ -38,20 +42,23 @@ public class IntegrationTest extends FluentTest {
     goTo("http://localhost:4567/");
     fill("#newfirstname").with("John");
     fill("#newlastname").with("Travolta");
-    submit(".btn");
+    submit(".btn-block");
     assertThat(pageSource()).contains("John Travolta");
   }
 
   @Test
-  public void updateStylist_ShowedOnStylistPage() {
+  public void updateStylist_ShowedOnStylistPageWithAllClients() {
     Stylist newStylist = new Stylist("Harry", "Poter");
     newStylist.save();
+    Client client = new Client("Albert", "Enshtein", "5829", newStylist.getId());
+    client.save();
 
     goTo("http://localhost:4567/stylist/" + newStylist.getId());
     fill("#newfirstname").with("John");
     fill("#newlastname").with("Travolta");
-    submit(".btn");
+    submit(".btn-block");
     assertThat(pageSource()).contains("John Travolta");
+    assertThat(pageSource()).contains("Albert Enshtein");
   }
 
   @Test
@@ -66,12 +73,12 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("(503) 888-5544");
   }
 
-  @Test
-  public void newClientPageSuccesfullyOpen () {
-    goTo("http://localhost:4567/");
-    click("a", withText("Manage clients"));
-    assertThat(pageSource()).contains("Clients:");
-  }
+  // @Test
+  // public void newClientPageSuccesfullyOpen () {
+  //   goTo("http://localhost:4567");
+  //   click("a", withText("Stylists"));
+  //   assertThat(pageSource()).contains("Clients:");
+  // }
 
   @Test
   public void clientList_isShowedOnClientsPage() {
@@ -84,8 +91,7 @@ public class IntegrationTest extends FluentTest {
     Client secondClient = new Client("Harry", "Poter", "(503) 999-5544", secondStylist.getId());
     secondClient.save();
 
-    goTo("http://localhost:4567/");
-    click("a", withText("Manage clients"));
+    goTo("http://localhost:4567/clients");
     assertThat(pageSource()).contains("Uma Turman");
     assertThat(pageSource()).contains("(503) 888-5544");
     assertThat(pageSource()).contains("Harry Poter");
@@ -102,7 +108,7 @@ public class IntegrationTest extends FluentTest {
     fill("#newlastname").with("Travolta");
     fill("#newphone").with("(097) 645-8891");
     fillSelect("#stylist").withText(stylist.getName());
-    submit(".btn");
+    submit(".btn-block");
     assertThat(pageSource()).contains("John Travolta succesfully added to stylist Mrs Smith");
   }
 

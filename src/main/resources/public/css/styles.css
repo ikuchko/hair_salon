@@ -12,6 +12,45 @@ h1 {
   font-family: 'Oswald', sans-serif;
 }
 
-h3 {
+h3, h4, p {
   font-family: 'Montserrat', sans-serif;
+}
+
+.navbar, .panel-grey {
+  background-color: #ccc !important;
+  border-color: rgba(56, 51, 51, 0.21);
+}
+
+.panel-title {
+  font-size: 18px;
+}
+
+.jumbotron {
+  background-color: #F8F8F8;
+  padding: 0px;
+  margin-top: 54px;
+}
+
+#righ-float-button{
+  float: right;
+}
+
+.bg-warning {
+  padding: 10px;
+}
+
+.form-horizontal {
+  padding: 10px;
+}
+
+.input {
+  width: 100%;
+}
+
+.important {
+  font-size: 25px;
+}
+
+.glyphicon {
+  color: white;
 }
