@@ -1,34 +1,76 @@
-<h2>Clients:</h2>
-
-#if ($client)
-  <h3>$client.getName() succesfully added to stylist $stylist.getName()</h3>
+#if ($clientObject)
+  <p class="bg-success"><strong>$clientObject.getName()</strong> succesfully added to stylist <strong>$stylist.getName()</strong></p>
 #end
 
-<form class="" action="/clients" method="post">
-  <label for="newfirstname">First name</label>
-  <input type="text" name="newfirstname" id="newfirstname" >
+<div class="col-md-8">
+  #if ($clients.size() == 0)
+    <h3 class="bg-warning">Could not find any client</h3>
+    </div>
+  #else
 
-  <label for="newlastname">Last name</label>
-  <input type="text" name="newlastname" id="newlastname">
+    <div class="panel panel-default">
+      <div class="panel-heading panel-grey">
+        <h3>Clients: </h3>
+      </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Client name</th>
+              <th>Phone Number</th>
+              <th>Stylist</th>
+            </tr>
+          </thead>
+          <tbody>
+            #foreach($client in $clients)
+              <tr>
+                <td>$client.getName()</td>
+                <td>$client.getPhoneNumber()</td>
+                <td>$client.getStylistObject().getName()</td>
+                <td>
+                  <form action="/deleteClient/$client.getId()" method="get">
+                    <button type="submit" class="btn btn-primary" aria-label="Left Align" id="righ-float-button">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            #end
+          </tbody>
+        </table>
+    </div>
+  </div>
+#end
 
-  <label for="newphone">Phone number</label>
-  <input type="text" name="newphone" id="newphone">
+  <div class="col-md-4">
+    <div class="jumbotron mini-jumbotron">
+      <form class="form-horizontal" action="/clients" method="post">
+        <div class="bs-callout bs-callout-info">
+          <h4>Add new client</h4>
 
-  <label for="stylist">Stylist name</label>
-  <select id="stylist" name="stylist" type="text">
-    #foreach($stylist in $stylists)
-      <option value="$stylist.getId()">$stylist.getName()</option>
-    #end
-  </select>
+          <div class="form-group">
+            <input type="text" class="form-control" name="newfirstname" id="newfirstname" placeholder="First name">
+          </div>
 
-  <button type="submit" class="btn btn-primary btn-block" name="button">Create</button>
-</form>
+          <div class="form-group">
+            <input type="text" class="form-control" name="newlastname" id="newlastname" placeholder="Last name">
+          </div>
 
+          <div class="form-group">
+            <input type="text" class="form-control" name="newphone" id="newphone" placeholder="Phone number">
+          </div>
 
-<ul>
-  #foreach($client in $clients)
-    <li>$client.getName() $client.getPhoneNumber()</li>
-  #end
-</ul>
+          <div class="form-group">
+            <select id="stylist" name="stylist" type="text">
+              #foreach($stylist in $stylists)
+                <option value="$stylist.getId()">$stylist.getName()</option>
+              #end
+            </select>
+          </div>
 
-<a href="/">Back</a>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" name="button">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

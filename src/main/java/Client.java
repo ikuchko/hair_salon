@@ -127,4 +127,8 @@ public class Client{
     }
   }
 
+  public Stylist getStylistObject() {
+    return Stylist.find(mStylistId);
+  }
+
 }

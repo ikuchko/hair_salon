@@ -27,15 +27,20 @@ h3, h4, p {
 
 .jumbotron {
   background-color: #F8F8F8;
-  padding: 0px;
-  margin-top: 54px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding: 15px;
+}
+
+.mini-jumbotron {
+  padding: 15px !important;
 }
 
 #righ-float-button{
   float: right;
 }
 
-.bg-warning {
+.bg-warning .bg-success {
   padding: 10px;
 }
 
