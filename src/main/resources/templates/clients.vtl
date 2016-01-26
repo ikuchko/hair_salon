@@ -23,9 +23,9 @@
           <tbody>
             #foreach($client in $clients)
               <tr>
-                <td>$client.getName()</td>
+                <td><a href="/client/change/$client.getId()">$client.getName()</a></td>
                 <td>$client.getPhoneNumber()</td>
-                <td>$client.getStylistObject().getName()</td>
+                <td><a href="/stylist/$client.getStylistObject().getId()">$client.getStylistObject().getName()</a></td>
                 <td>
                   <form action="/deleteClient/$client.getId()" method="get">
                     <button type="submit" class="btn btn-primary" aria-label="Left Align" id="righ-float-button">
@@ -43,7 +43,40 @@
 
   <div class="col-md-4">
     <div class="jumbotron mini-jumbotron">
-      <form class="form-horizontal" action="/clients" method="post">
+      #if ($updateClient)
+        <form class="form-horizontal" action="/client/update/$updateClient.getId()" method="post">
+          <div class="bs-callout bs-callout-info">
+            <h4>Update client</h4>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="updatefirstname" id="updatefirstname" placeholder="First name" value="$updateClient.getFirstName()">
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="updatelastname" id="updatelastname" placeholder="Last name" value="$updateClient.getLastName()">
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="updatephone" id="updatephone" placeholder="Phone number" value="$updateClient.getPhoneNumber()">
+            </div>
+
+            <div class="form-group">
+              stylist
+              <select id="stylist" name="updatestylist" type="text" value="$updateClient.getStylistObject().getName()">
+                #foreach($stylist in $stylists)
+                  <option value="$stylist.getId()">$stylist.getName()</option>
+                #end
+              </select>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block" name="button">Update</button>
+            </div>
+          </div>
+        </form>
+      #end
+
+      <form class="form-horizontal" action="/client/add" method="post">
         <div class="bs-callout bs-callout-info">
           <h4>Add new client</h4>
 
@@ -60,6 +93,7 @@
           </div>
 
           <div class="form-group">
+            stylist
             <select id="stylist" name="stylist" type="text">
               #foreach($stylist in $stylists)
                 <option value="$stylist.getId()">$stylist.getName()</option>

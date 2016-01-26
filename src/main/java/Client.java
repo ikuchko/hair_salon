@@ -70,7 +70,7 @@ public class Client{
   }
 
   public static List<Client> all() {
-    String sql = "SELECT id AS mId, first_name AS mFirstName, last_name AS mLastName, phone_number AS mPhoneNumber, stylist_id AS mStylistId FROM clients";
+    String sql = "SELECT cl.id AS mId, cl.first_name AS mFirstName, cl.last_name AS mLastName, cl.phone_number AS mPhoneNumber, cl.stylist_id AS mStylistId FROM clients AS cl INNER JOIN stylists ON cl.stylist_id = stylists.id ORDER BY stylists.first_name, stylists.last_name, cl.first_name, cl.last_name";
     try (Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
         .executeAndFetch(Client.class);

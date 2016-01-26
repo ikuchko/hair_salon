@@ -35,7 +35,7 @@
         <tbody>
           #foreach($client in $clients)
             <tr>
-              <td>$client.getName()</td>
+              <td><a href="/client/change/$client.getId()">$client.getName()</a></td>
               <td>$client.getPhoneNumber()</td>
             </tr>
           #end
