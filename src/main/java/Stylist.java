@@ -98,4 +98,21 @@ public class Stylist{
     }
   }
 
+  public static Stylist globalSearch(String query) {
+    String sql = "SELECT st.id AS mId, st.first_name AS mFirstName, st.last_name AS mLastName " +
+                 "FROM stylists AS st INNER JOIN clients ON st.id = clients.stylist_id " +
+                 "WHERE st.first_name LIKE :query OR st.last_name LIKE :query OR clients.first_name LIKE :query OR clients.last_name LIKE :query";
+    try (Connection con = DB.sql2o.open()){
+      return con.createQuery(sql)
+        .addParameter("query", "%"+query+"%")
+        .addParameter("query", "%"+query+"%")
+        .addParameter("query", "%"+query+"%")
+        .addParameter("query", "%"+query+"%")
+        .executeAndFetchFirst(Stylist.class);
+    }
+  }
+
 }
+
+
+//SELECT st.id, st.first_name, st.last_name FROM stylists AS st INNER JOIN clients ON st.id = clients.stylist_id WHERE st.first_name LIKE :qeury OR st.last_name LIKE query OR clients.first_name LIKE query OR clients.last_name LIKE query

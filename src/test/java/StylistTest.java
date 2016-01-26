@@ -72,5 +72,15 @@ public class StylistTest {
     assertTrue(stylist.getClientList().containsAll(Arrays.asList(clients)));
   }
 
+  @Test
+  public void stylist_findByStylistOrClientNameCorrectly() {
+    Stylist stylist = new Stylist("Sergei", "Zverev");
+    stylist.save();
+    Client firstClient = new Client("Lev", "Tolstoy", "(050) 345-1232", stylist.getId());
+    firstClient.save();
+    assertEquals(stylist, Stylist.globalSearch("Tolstoy"));
+    assertEquals(stylist, Stylist.globalSearch("Sergei"));
+  }
+
 
 }

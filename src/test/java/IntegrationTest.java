@@ -73,13 +73,6 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("(503) 888-5544");
   }
 
-  // @Test
-  // public void newClientPageSuccesfullyOpen () {
-  //   goTo("http://localhost:4567");
-  //   click("a", withText("Stylists"));
-  //   assertThat(pageSource()).contains("Clients:");
-  // }
-
   @Test
   public void clientList_isShowedOnClientsPage() {
     Stylist firstStylist = new Stylist("Dr", "House");
@@ -109,9 +102,21 @@ public class IntegrationTest extends FluentTest {
     fill("#newphone").with("(097) 645-8891");
     fillSelect("#stylist").withText(stylist.getName());
     submit(".btn-block");
-    assertThat(pageSource()).contains("John Travolta succesfully added to stylist Mrs Smith");
+    assertThat(pageSource()).contains("succesfully added to stylist");
   }
 
+  @Test
+  public void updateClient_correctly() {
+    Stylist stylist = new Stylist("Mrs", "Smith");
+    stylist.save();
+    Client client = new Client("Doctor", "House", "911", stylist.getId());
+    client.save();
 
+    goTo("http://localhost:4567/clients");
+    click("a", withText("Doctor House"));
+    fill("#updatefirstname").with("MD");
+    submit(".btn-update");
+    assertThat(pageSource()).contains("MD House");
+  }
 
 }

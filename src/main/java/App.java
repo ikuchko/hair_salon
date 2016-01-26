@@ -75,6 +75,21 @@ public class App {
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
+      get("/search", (request, response) -> {
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        model.put("template", "templates/stylist.vtl");
+
+        Stylist stylist = Stylist.globalSearch(request.queryParams("search"));
+        if (stylist == null){
+            response.redirect("/clients");
+            return null;
+        }
+        model.put("stylist", stylist);
+        model.put("clients", stylist.getClientList());
+
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
+
 
       post("/newStylist", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
