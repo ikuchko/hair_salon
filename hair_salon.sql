@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: clients; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: clients; Type: TABLE; Schema: public; Owner: iliak; Tablespace: 
 --
 
 CREATE TABLE clients (
@@ -42,10 +42,10 @@ CREATE TABLE clients (
 );
 
 
-ALTER TABLE clients OWNER TO "Guest";
+ALTER TABLE clients OWNER TO iliak;
 
 --
--- Name: clients_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+-- Name: clients_id_seq; Type: SEQUENCE; Schema: public; Owner: iliak
 --
 
 CREATE SEQUENCE clients_id_seq
@@ -56,17 +56,17 @@ CREATE SEQUENCE clients_id_seq
     CACHE 1;
 
 
-ALTER TABLE clients_id_seq OWNER TO "Guest";
+ALTER TABLE clients_id_seq OWNER TO iliak;
 
 --
--- Name: clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+-- Name: clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iliak
 --
 
 ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
 
 
 --
--- Name: stylists; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: stylists; Type: TABLE; Schema: public; Owner: iliak; Tablespace: 
 --
 
 CREATE TABLE stylists (
@@ -76,10 +76,10 @@ CREATE TABLE stylists (
 );
 
 
-ALTER TABLE stylists OWNER TO "Guest";
+ALTER TABLE stylists OWNER TO iliak;
 
 --
--- Name: stylists_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+-- Name: stylists_id_seq; Type: SEQUENCE; Schema: public; Owner: iliak
 --
 
 CREATE SEQUENCE stylists_id_seq
@@ -90,68 +90,61 @@ CREATE SEQUENCE stylists_id_seq
     CACHE 1;
 
 
-ALTER TABLE stylists_id_seq OWNER TO "Guest";
+ALTER TABLE stylists_id_seq OWNER TO iliak;
 
 --
--- Name: stylists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+-- Name: stylists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iliak
 --
 
 ALTER SEQUENCE stylists_id_seq OWNED BY stylists.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iliak
 --
 
 ALTER TABLE ONLY clients ALTER COLUMN id SET DEFAULT nextval('clients_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iliak
 --
 
 ALTER TABLE ONLY stylists ALTER COLUMN id SET DEFAULT nextval('stylists_id_seq'::regclass);
 
 
 --
--- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: Guest
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: iliak
 --
 
 COPY clients (id, first_name, last_name, stylist_id, phone_number) FROM stdin;
-1	Pity	Pony	4	(099) 9900909
-2	John	Smith	2	331231231
-3	Mitya	Uselkov	4	(099) 9900909
 \.
 
 
 --
--- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+-- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iliak
 --
 
-SELECT pg_catalog.setval('clients_id_seq', 3, true);
+SELECT pg_catalog.setval('clients_id_seq', 40, true);
 
 
 --
--- Data for Name: stylists; Type: TABLE DATA; Schema: public; Owner: Guest
+-- Data for Name: stylists; Type: TABLE DATA; Schema: public; Owner: iliak
 --
 
 COPY stylists (id, first_name, last_name) FROM stdin;
-3	ttt	tadwad
-6	ttt	tttratata6
-2	2	two
-4	Whyta	MakakaFuka
 \.
 
 
 --
--- Name: stylists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+-- Name: stylists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iliak
 --
 
-SELECT pg_catalog.setval('stylists_id_seq', 6, true);
+SELECT pg_catalog.setval('stylists_id_seq', 52, true);
 
 
 --
--- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: iliak; Tablespace: 
 --
 
 ALTER TABLE ONLY clients
@@ -159,7 +152,7 @@ ALTER TABLE ONLY clients
 
 
 --
--- Name: stylists_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: stylists_pkey; Type: CONSTRAINT; Schema: public; Owner: iliak; Tablespace: 
 --
 
 ALTER TABLE ONLY stylists
@@ -167,7 +160,7 @@ ALTER TABLE ONLY stylists
 
 
 --
--- Name: clients_stylist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Guest
+-- Name: clients_stylist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: iliak
 --
 
 ALTER TABLE ONLY clients
@@ -175,12 +168,12 @@ ALTER TABLE ONLY clients
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: epicodus
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM epicodus;
-GRANT ALL ON SCHEMA public TO epicodus;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
